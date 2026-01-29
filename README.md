@@ -71,6 +71,45 @@ To preview the production build locally:
 npm run preview
 ```
 
+## 🚀 Deploy to Netlify
+
+This project is configured for easy deployment on Netlify.
+
+### Option 1: Deploy via Netlify UI
+
+1. Push your code to GitHub
+2. Go to [Netlify](https://app.netlify.com)
+3. Click "Add new site" → "Import an existing project"
+4. Connect your GitHub repository
+5. Netlify will auto-detect the build settings from `netlify.toml`
+6. Click "Deploy site"
+
+### Option 2: Deploy via Netlify CLI
+
+1. Install Netlify CLI:
+```bash
+npm install -g netlify-cli
+```
+
+2. Login to Netlify:
+```bash
+netlify login
+```
+
+3. Deploy:
+```bash
+npm run build
+netlify deploy --prod --dir=dist
+```
+
+### Netlify Configuration
+
+The project includes pre-configured Netlify settings:
+- **`netlify.toml`** - Build commands and settings
+- **`public/_redirects`** - SPA routing support
+- **Node 18** - Specified Node.js version
+- **Security headers** - X-Frame-Options, XSS protection
+
 ## 📁 Project Structure
 
 ```
