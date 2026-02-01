@@ -11,7 +11,7 @@ const Navbar = () => {
             setIsScrolled(window.scrollY > 50);
 
             // Update active section based on scroll position
-            const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+            const sections = ['home', 'about', 'skills', 'experience', 'projects', 'contact'];
             const scrollPosition = window.scrollY + 100;
 
             for (const section of sections) {
@@ -60,7 +60,7 @@ const Navbar = () => {
                 </button>
 
                 <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`}>
-                    {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
+                    {['home', 'about', 'skills', 'experience', 'projects', 'contact'].map((section) => (
                         <li key={section}>
                             <button
                                 className={`nav-link ${activeSection === section ? 'active' : ''}`}
