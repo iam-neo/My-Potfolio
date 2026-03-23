@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { socialLinks, profileInfo } from '../data/profile';
+import useGitHubStats from '../hooks/useGitHubStats';
 import './Hero.css';
 
 const Hero = () => {
     const [displayText, setDisplayText] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
     const fullText = profileInfo.tagline;
+    const { repos, followers, loading } = useGitHubStats();
 
     useEffect(() => {
         if (currentIndex < fullText.length) {
@@ -90,15 +92,19 @@ const Hero = () => {
                             Turning ideas into reality through clean code and creative solutions.
                         </p>
 
-                        {/* Quick Stats */}
+                        {/* Quick Stats - GitHub API */}
                         <div className="hero-stats">
                             <div className="stat-item">
-                                <span className="stat-number">33+</span>
+                                <span className={`stat-number ${loading ? 'stat-loading' : ''}`}>
+                                    {loading ? '...' : `${repos}+`}
+                                </span>
                                 <span className="stat-label">Projects</span>
                             </div>
                             <div className="stat-divider"></div>
                             <div className="stat-item">
-                                <span className="stat-number">13</span>
+                                <span className={`stat-number ${loading ? 'stat-loading' : ''}`}>
+                                    {loading ? '...' : followers}
+                                </span>
                                 <span className="stat-label">Followers</span>
                             </div>
                             <div className="stat-divider"></div>

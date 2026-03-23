@@ -1,15 +1,20 @@
+import useScrollAnimation from '../hooks/useScrollAnimation';
+import useGitHubStats from '../hooks/useGitHubStats';
 import './About.css';
 
 const About = () => {
+    const [sectionRef, isVisible] = useScrollAnimation();
+    const { repos, followers, loading } = useGitHubStats();
+
     return (
         <section id="about" className="about">
-            <div className="container">
-                <div className="section-header">
+            <div className="container" ref={sectionRef}>
+                <div className={`section-header animate-in ${isVisible ? 'animate-visible' : ''}`}>
                     <h2 className="section-title">About Me</h2>
                     <div className="title-underline"></div>
                 </div>
 
-                <div className="about-content">
+                <div className={`about-content animate-in ${isVisible ? 'animate-visible' : ''}`} style={{ transitionDelay: '0.15s' }}>
                     <div className="about-text">
                         <p className="about-intro">
                             Hello! I'm <span className="highlight">Nirmal Magar</span>, a passionate full-stack developer
@@ -32,7 +37,9 @@ const About = () => {
 
                         <div className="about-highlights">
                             <div className="highlight-item">
-                                <div className="highlight-number">32+</div>
+                                <div className={`highlight-number ${loading ? 'stat-loading' : ''}`}>
+                                    {loading ? '...' : `${repos}+`}
+                                </div>
                                 <div className="highlight-label">GitHub Repositories</div>
                             </div>
                             <div className="highlight-item">
@@ -40,7 +47,9 @@ const About = () => {
                                 <div className="highlight-label">Featured Projects</div>
                             </div>
                             <div className="highlight-item">
-                                <div className="highlight-number">13</div>
+                                <div className={`highlight-number ${loading ? 'stat-loading' : ''}`}>
+                                    {loading ? '...' : followers}
+                                </div>
                                 <div className="highlight-label">GitHub Followers</div>
                             </div>
                         </div>
