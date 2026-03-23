@@ -48,6 +48,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hide default cursor on desktop for custom cursor */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none;
+  }
+}
+
 h1,
 h2,
 h3,
