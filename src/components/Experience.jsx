@@ -1,11 +1,14 @@
 import { experiences } from '../data/experience';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Experience.css';
 
 const Experience = () => {
+    const [sectionRef, isVisible] = useScrollAnimation();
+
     return (
         <section id="experience" className="experience">
-            <div className="container">
-                <div className="section-header">
+            <div className="container" ref={sectionRef}>
+                <div className={`section-header animate-in ${isVisible ? 'animate-visible' : ''}`}>
                     <h2 className="section-title">Work Experience</h2>
                     <div className="title-underline"></div>
                     <p className="section-subtitle">
@@ -14,8 +17,12 @@ const Experience = () => {
                 </div>
 
                 <div className="experience-timeline">
-                    {experiences.map((exp) => (
-                        <div key={exp.id} className="experience-card">
+                    {experiences.map((exp, index) => (
+                        <div
+                            key={exp.id}
+                            className={`experience-card animate-in ${isVisible ? 'animate-visible' : ''}`}
+                            style={{ transitionDelay: `${index * 0.15}s` }}
+                        >
                             <div className="company-header">
                                 <div className="company-logo">
                                     <span className="logo-placeholder">
@@ -31,8 +38,8 @@ const Experience = () => {
                             </div>
 
                             <div className="positions-list">
-                                {exp.positions.map((position, index) => (
-                                    <div key={index} className="position-item">
+                                {exp.positions.map((position, idx) => (
+                                    <div key={idx} className="position-item">
                                         <div className="position-header">
                                             <h4 className="position-title">{position.title}</h4>
                                             <span className="position-type">{position.type}</span>
@@ -60,8 +67,8 @@ const Experience = () => {
                                         )}
                                         {position.skills && position.skills.length > 0 && (
                                             <div className="position-skills">
-                                                {position.skills.slice(0, 5).map((skill, idx) => (
-                                                    <span key={idx} className="skill-tag">{skill}</span>
+                                                {position.skills.slice(0, 5).map((skill, si) => (
+                                                    <span key={si} className="skill-tag">{skill}</span>
                                                 ))}
                                                 {position.skills.length > 5 && (
                                                     <span className="skill-tag more-skills">+{position.skills.length - 5} more</span>

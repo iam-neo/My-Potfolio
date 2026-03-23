@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { socialLinks, profileInfo } from '../data/profile';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Contact.css';
 
 const Contact = () => {
@@ -9,6 +10,7 @@ const Contact = () => {
         message: ''
     });
     const [errors, setErrors] = useState({});
+    const [sectionRef, isVisible] = useScrollAnimation();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -52,8 +54,8 @@ const Contact = () => {
 
     return (
         <section id="contact" className="contact">
-            <div className="container">
-                <div className="section-header">
+            <div className="container" ref={sectionRef}>
+                <div className={`section-header animate-in ${isVisible ? 'animate-visible' : ''}`}>
                     <h2 className="section-title">Get In Touch</h2>
                     <div className="title-underline"></div>
                     <p className="section-subtitle">
@@ -62,7 +64,7 @@ const Contact = () => {
                 </div>
 
                 <div className="contact-content">
-                    <div className="contact-info">
+                    <div className={`contact-info animate-in ${isVisible ? 'animate-visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
                         <div className="info-card">
                             <div className="info-icon">💼</div>
                             <h3>LinkedIn</h3>
@@ -120,7 +122,7 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    <form className="contact-form" onSubmit={handleSubmit}>
+                    <form className={`contact-form animate-in ${isVisible ? 'animate-visible' : ''}`} onSubmit={handleSubmit} style={{ transitionDelay: '0.2s' }}>
                         <div className="form-group">
                             <label htmlFor="name">Your Name</label>
                             <input
@@ -169,7 +171,7 @@ const Contact = () => {
                     </form>
                 </div>
 
-                <div className="all-socials">
+                <div className={`all-socials animate-in ${isVisible ? 'animate-visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
                     <h3 className="socials-title">Find Me On</h3>
                     <div className="socials-grid">
                         <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="social-card">

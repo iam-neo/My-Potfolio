@@ -1,11 +1,14 @@
 import { skills } from '../data/skills';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Skills.css';
 
 const Skills = () => {
+    const [sectionRef, isVisible] = useScrollAnimation();
+
     return (
         <section id="skills" className="skills">
-            <div className="container">
-                <div className="section-header">
+            <div className="container" ref={sectionRef}>
+                <div className={`section-header animate-in ${isVisible ? 'animate-visible' : ''}`}>
                     <h2 className="section-title">Skills & Expertise</h2>
                     <div className="title-underline"></div>
                     <p className="section-subtitle">
@@ -14,8 +17,12 @@ const Skills = () => {
                 </div>
 
                 <div className="skills-grid">
-                    {Object.entries(skills).map(([category, skillList]) => (
-                        <div key={category} className="skill-category">
+                    {Object.entries(skills).map(([category, skillList], catIndex) => (
+                        <div
+                            key={category}
+                            className={`skill-category animate-in ${isVisible ? 'animate-visible' : ''}`}
+                            style={{ transitionDelay: `${catIndex * 0.12}s` }}
+                        >
                             <h3 className="category-title">
                                 {category.charAt(0).toUpperCase() + category.slice(1)}
                             </h3>
@@ -29,7 +36,7 @@ const Skills = () => {
                                         <div className="skill-bar">
                                             <div
                                                 className="skill-progress"
-                                                style={{ width: `${skill.level}%` }}
+                                                style={{ width: isVisible ? `${skill.level}%` : '0%' }}
                                             ></div>
                                         </div>
                                     </div>
