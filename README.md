@@ -1,36 +1,42 @@
 # Nirmal Magar - Portfolio
 
-A modern, responsive portfolio website built with React and Vite, showcasing projects, skills, and professional information.
+A modern, highly interactive, and responsive developer portfolio website built with React, Vite, Tailwind CSS, and Framer Motion. Designed to showcase projects, skills, and professional experience with a premium, cinematic feel.
 
-## 🌟 Features
+## 🌟 Key Features
 
-- **Modern Design**: Dark theme with vibrant purple/pink gradients and glassmorphism effects
-- **Fully Responsive**: Optimized for mobile, tablet, and desktop devices
-- **Smooth Animations**: Eye-catching animations and micro-interactions throughout
-- **SEO Optimized**: Comprehensive meta tags for better search engine visibility
-- **Component-Based**: Built with reusable React components for maintainability
-- **Fast Performance**: Powered by Vite for lightning-fast development and optimized builds
+- **Modern Glassmorphism UI**: Dark theme featuring dynamic purple/pink gradients, blurred glass paneling, and depth-based shadows.
+- **Interactive Storytelling Timeline**: A custom-built, alternating vertical thread timeline that expands into detailed professional case studies out of minimal nodes.
+- **Dynamic Radar Skills Chart**: A visually engaging spider/radar chart built with Recharts, mapping out core technical proficiencies alongside animated data rings.
+- **Certificate Gallery**: An elegant gallery showcasing professional certifications with interactive pop-up modal viewers.
+- **GitHub Projects Integration**: Live project showcases structured perfectly for recruiters and peers.
+- **Smooth Animations**: High-performance Framer Motion physics-based spring animations for page-load scrolling, modals, and hover states.
+- **Fully Responsive**: Meticulously optimized across mobile, tablet, and desktop viewports without losing structural integrity.
+- **SEO Optimized**: Built for high search engine visibility and accessibility.
 
 ## 🛠️ Technologies Used
 
-- **React** - UI library for building component-based interfaces
+- **React 18** - UI library for building component-based interfaces
 - **Vite** - Next-generation frontend build tool
-- **CSS3** - Custom styling with animations and modern effects
-- **JavaScript (ES6+)** - Modern JavaScript features
+- **Tailwind CSS** - Utility-first styling framework
+- **Framer Motion** - Production-ready animation physics
+- **Recharts** - Composable charting library
+- **JavaScript (ES6+)** - Modern JavaScript infrastructure
 
-## 📋 Sections
+## 📋 Portfolio Sections
 
-1. **Hero** - Eye-catching introduction with animated typing effect
-2. **About** - Professional summary and background
-3. **Skills** - Technical skills organized by category with progress indicators
-4. **Projects** - Featured projects from GitHub with filtering options
-5. **Contact** - Contact form and social media links
+1. **Hero** - Cinematic introduction with animated cursors and floating depth effects.
+2. **About** - Professional background summary and highlights.
+3. **Skills & Expertise** - An advanced radar chart visualizing core competencies, plus animated circular progress rings for secondary technical capabilities.
+4. **Career Journey (Experience)** - A top-down alternating vertical timeline where minimalistic roles expand into detailed Challenge/Action/Impact storyboards.
+5. **Projects** - Featured projects pulled from GitHub showcasing technical applications.
+6. **Certifications** - A responsive grid gallery of earned technical certificates with interactive full-screen modals.
+7. **Contact** - Direct contact form and active social media networking links.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v18 or higher recommended)
 - npm or yarn
 
 ### Installation
@@ -71,20 +77,11 @@ To preview the production build locally:
 npm run preview
 ```
 
-## 🚀 Deploy to Netlify
+## 🚀 Deployment
 
-This project is configured for easy deployment on Netlify.
+This project is configured for easy deployment on platforms like Vercel or Netlify.
 
-### Option 1: Deploy via Netlify UI
-
-1. Push your code to GitHub
-2. Go to [Netlify](https://app.netlify.com)
-3. Click "Add new site" → "Import an existing project"
-4. Connect your GitHub repository
-5. Netlify will auto-detect the build settings from `netlify.toml`
-6. Click "Deploy site"
-
-### Option 2: Deploy via Netlify CLI
+### Option: Deploy via Netlify CLI
 
 1. Install Netlify CLI:
 ```bash
@@ -96,56 +93,43 @@ npm install -g netlify-cli
 netlify login
 ```
 
-3. Deploy:
+3. Build & Deploy:
 ```bash
 npm run build
 netlify deploy --prod --dir=dist
 ```
 
-### Netlify Configuration
-
-The project includes pre-configured Netlify settings:
-- **`netlify.toml`** - Build commands and settings
-- **`public/_redirects`** - SPA routing support
-- **Node 18** - Specified Node.js version
-- **Security headers** - X-Frame-Options, XSS protection
-
-## 📁 Project Structure
+## 📁 Project Architecture
 
 ```
 folio/
-├── public/              # Static assets
+├── public/              # Static assets and images
+│   └── certificates/    # Certificate images
 ├── src/
-│   ├── components/      # React components
-│   │   ├── Navbar.jsx
-│   │   ├── Hero.jsx
-│   │   ├── About.jsx
-│   │   ├── Skills.jsx
-│   │   ├── Projects.jsx
-│   │   └── Contact.jsx
-│   ├── data/           # Data files
-│   │   ├── projects.js
-│   │   └── skills.js
-│   ├── App.jsx         # Main app component
-│   ├── App.css         # App-level styles
-│   ├── index.css       # Global styles and variables
-│   └── main.jsx        # Entry point
-├── index.html          # HTML template
-├── package.json        # Project dependencies
-└── vite.config.js      # Vite configuration
+│   ├── components/      # React components (Experience, Skills, Certifications, etc.)
+│   ├── data/            # Data models (experience.js, skills.js, certifications.js)
+│   ├── hooks/           # Custom React hooks (useScrollAnimation)
+│   ├── App.jsx          # Main application router/component
+│   ├── App.css          # App-level styling
+│   ├── index.css        # Global styles, Tailwind directives, and CSS variables
+│   └── main.jsx         # Vite entry point
+├── index.html           # HTML template
+├── package.json         # Project manifests and dependencies
+├── tailwind.config.js   # Tailwind style configurations
+└── vite.config.js       # Vite configuration
 ```
 
 ## 🎨 Customization
 
-### Update Personal Information
+### Updating Content
 
-1. **Projects**: Edit `src/data/projects.js` to update project information
-2. **Skills**: Edit `src/data/skills.js` to update your skills and proficiency levels
-3. **About Content**: Edit `src/components/About.jsx` to update bio and highlights
-4. **Contact Info**: Edit `src/components/Contact.jsx` for contact details and social links
-5. **Hero Section**: Edit `src/components/Hero.jsx` to update name and tagline
+Updating the portfolio is driven strictly through the isolated payload files in `src/data/`:
+1. **Experience**: Edit `src/data/experience.js` to add roles, timelines, and case study impacts.
+2. **Projects**: Edit `src/data/projects.js` to outline new project repositories.
+3. **Skills**: Edit `src/data/skills.js` to modify the Radar graph axes and core competencies.
+4. **Certifications**: Add images to `public/certificates/` and reference them in `src/data/certifications.js`.
 
-### Customize Colors
+### Customize Themes
 
 Edit CSS custom properties in `src/index.css`:
 
@@ -170,16 +154,6 @@ Edit CSS custom properties in `src/index.css`:
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-## 💡 Acknowledgments
-
-- Design inspiration from modern portfolio websites
-- Icons from inline SVGs
-- Fonts from Google Fonts (Inter & Poppins)
 
 ---
 
