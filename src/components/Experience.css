@@ -276,109 +276,432 @@
     margin-top: 0.3rem;
 }
 
-.vt-story-wrapper {
+/* ============================
+   Terminal Modal Overlay
+   ============================ */
+.terminal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 2rem;
+}
+
+.terminal-modal {
+    width: 100%;
+    max-width: 720px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+/* Scrollbar styling for modal */
+.terminal-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.terminal-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.terminal-modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+.terminal-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================
+   Terminal Window Styles
+   ============================ */
+.terminal-window {
+    border-radius: 12px;
     overflow: hidden;
-    text-align: left;
-    /* Ensure inner text is always left-aligned regardless of node */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0d1117;
+    display: flex;
+    flex-direction: column;
 }
 
-.vt-story-board {
-    margin-top: 1rem;
-    background: rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 2.5rem;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+/* CRT Glow Effect */
+.terminal-window.crt-effect {
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 40px rgba(126, 231, 135, 0.06),
+        0 0 80px rgba(121, 192, 255, 0.04);
 }
 
-.story-context-header {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.65rem 1rem;
+    background: #161b22;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.story-summary {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 1rem 0 0 0;
-}
-
-.story-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.story-section h4 {
-    font-size: 1.05rem;
-    color: var(--text-primary);
-    margin: 0 0 0.8rem 0;
+.terminal-buttons {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 7px;
 }
 
-.story-section p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.terminal-btn.close {
+    background: #ff5f57;
+    box-shadow: 0 0 6px rgba(255, 95, 87, 0.4);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.terminal-btn.close:hover {
+    transform: scale(1.3);
+}
+
+.terminal-btn.minimize {
+    background: #febc2e;
+    box-shadow: 0 0 6px rgba(254, 188, 46, 0.4);
+}
+
+.terminal-btn.maximize {
+    background: #28c840;
+    box-shadow: 0 0 6px rgba(40, 200, 64, 0.4);
+}
+
+.terminal-title {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    flex: 1;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.terminal-body {
+    position: relative;
+    padding: 1.2rem 1.4rem;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.85rem;
     line-height: 1.7;
-    margin: 0;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 55vh;
 }
 
-.story-full {
-    grid-column: 1 / -1;
+/* ============================
+   CRT Scanlines Overlay
+   ============================ */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.08) 2px,
+            rgba(0, 0, 0, 0.08) 4px);
+    animation: scanline-flicker 8s ease-in-out infinite;
 }
 
-.story-section ul {
+@keyframes scanline-flicker {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.25;
+    }
+}
+
+.terminal-block {
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.terminal-block:last-child {
+    margin-bottom: 0;
+}
+
+.terminal-line {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+.terminal-line .prompt {
+    color: #7ee787;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.terminal-line .command {
+    color: #79c0ff;
+    font-weight: 400;
+}
+
+.terminal-output {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.4rem 0 0.2rem 0;
+    font-size: 0.82rem;
+    line-height: 1.65;
+}
+
+/* Inline typewriter cursor */
+.inline-cursor {
+    color: #7ee787;
+    font-weight: bold;
+    animation: blink 0.7s step-end infinite;
+    margin-left: 1px;
+}
+
+.inline-cursor.hidden {
+    display: none;
+}
+
+.terminal-results {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.35rem;
 }
 
-.story-section ul li {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-    position: relative;
-    padding-left: 1.5rem;
-    line-height: 1.6;
+.terminal-results li {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.82rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
 }
 
-.story-section ul li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--primary-color);
+.success-arrow {
+    color: #7ee787;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
-.story-tools {
+/* Sequential result reveal */
+.result-item {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(3px);
+    transition: all 0.35s ease;
+}
+
+.result-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.tools-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
 }
 
-.story-tool-tag {
-    font-size: 0.8rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.03);
+.terminal-tool-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(121, 192, 255, 0.25);
+    border-radius: 6px;
+    color: #79c0ff;
+    background: rgba(121, 192, 255, 0.08);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
     transition: all 0.2s ease;
 }
 
-.story-tool-tag:hover {
-    background: rgba(255, 255, 255, 0.1);
+.terminal-tool-tag:hover {
+    background: rgba(121, 192, 255, 0.18);
+    border-color: rgba(121, 192, 255, 0.5);
     color: #fff;
-    border-color: rgba(255, 255, 255, 0.3);
 }
 
+/* ============================
+   Interactive Run Button
+   ============================ */
+.run-command {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.run-text {
+    color: #febc2e;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.run-command:hover .run-text {
+    color: #fff;
+}
+
+.run-hint {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.run-command:hover .run-hint {
+    background: rgba(254, 188, 46, 0.15);
+    border-color: rgba(254, 188, 46, 0.3);
+    color: #febc2e;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 0 transparent;
+    }
+
+    50% {
+        text-shadow: 0 0 8px rgba(254, 188, 46, 0.5);
+    }
+}
+
+/* Typing indicator dots */
+.typing-indicator {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6px;
+}
+
+.dot-pulse {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.dot-pulse::before,
+.dot-pulse::after,
+.dot-pulse {
+    position: relative;
+}
+
+.dot-pulse::before {
+    content: '•••';
+    letter-spacing: 2px;
+    color: rgba(126, 231, 135, 0.6);
+    animation: dot-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes dot-blink {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Blinking cursor */
+.cursor-blink {
+    color: #7ee787;
+    font-weight: bold;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.mt-2 {
+    margin-top: 0.25rem;
+}
+
+/* ============================
+   Status Bar
+   ============================ */
+.terminal-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 1rem;
+    background: #161b22;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.status-icon {
+    font-size: 0.75rem;
+}
+
+.status-right {
+    display: flex;
+    align-items: center;
+}
+
+.status-badge {
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    background: rgba(254, 188, 46, 0.1);
+    border: 1px solid rgba(254, 188, 46, 0.2);
+    color: #febc2e;
+    transition: all 0.3s ease;
+}
+
+.status-badge.done {
+    background: rgba(126, 231, 135, 0.1);
+    border-color: rgba(126, 231, 135, 0.25);
+    color: #7ee787;
+}
+
+/* ============================
+   Mobile Responsive
+   ============================ */
 @media (max-width: 900px) {
     .vt-duration-opposite {
         display: none;
@@ -423,8 +746,31 @@
         justify-content: flex-start;
     }
 
-    .vt-story-board {
-        padding: 1.5rem;
+    .terminal-overlay {
+        padding: 0.75rem;
+    }
+
+    .terminal-modal {
+        max-height: 85vh;
+    }
+
+    .terminal-body {
+        padding: 1rem;
+        font-size: 0.78rem;
+        max-height: 50vh;
+    }
+
+    .terminal-line .prompt {
+        font-size: 0.72rem;
+    }
+
+    .terminal-line .command {
+        font-size: 0.72rem;
+    }
+
+    .terminal-statusbar {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.8rem;
     }
 
     .vt-header {
