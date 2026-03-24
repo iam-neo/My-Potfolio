@@ -1,26 +1,26 @@
 export const certifications = [
     {
         id: 1,
-        title: "Professional Certificate I",
-        issuer: "Certification Authority",
-        date: "2023",
-        file: "/certificates/1.pdf",
+        title: "Certification of Completion",
+        issuer: "Apna College",
+        date: "Aug 2025",
+        file: "/certificates/1_page-0001.jpg",
         icon: "🏆"
     },
     {
         id: 2,
-        title: "Professional Certificate II",
-        issuer: "Certification Authority",
-        date: "2023",
-        file: "/certificates/2.pdf",
+        title: "Certificate of Participation",
+        issuer: "Vue School",
+        date: "Jul 2022",
+        file: "/certificates/2_page-0001.jpg",
         icon: "📜"
     },
     {
         id: 3,
-        title: "Professional Certificate III",
-        issuer: "Certification Authority",
-        date: "2023",
-        file: "/certificates/3.pdf",
+        title: "Instagram Essentials",
+        issuer: "IIDE - THe Digital School",
+        date: "Apr 2023",
+        file: "/certificates/3_page-0001.jpg",
         icon: "🎓"
     }
 ];

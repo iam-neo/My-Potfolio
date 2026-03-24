@@ -1,85 +1,151 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { experiences } from '../data/experience';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Experience.css';
 
+const storyContainerVariants = {
+    hidden: { opacity: 0, height: 0 },
+    show: {
+        opacity: 1,
+        height: 'auto',
+        transition: {
+            height: { type: "spring", stiffness: 200, damping: 20 },
+            staggerChildren: 0.1,
+            delayChildren: 0.1
+        }
+    },
+    exit: {
+        opacity: 0,
+        height: 0,
+        transition: {
+            height: { type: "spring", stiffness: 200, damping: 20, delay: 0.1 },
+            staggerChildren: 0.05,
+            staggerDirection: -1
+        }
+    }
+};
+
+const storyItemVariants = {
+    hidden: { opacity: 0, y: 10, filter: 'blur(4px)' },
+    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { type: "spring", stiffness: 250, damping: 20 } },
+    exit: { opacity: 0, y: 10, filter: 'blur(4px)' }
+};
+
 const Experience = () => {
     const [sectionRef, isVisible] = useScrollAnimation();
+    const [activeId, setActiveId] = useState(experiences[0].id);
 
     return (
-        <section id="experience" className="experience">
+        <section id="experience" className="vertical-journey-section">
             <div className="container" ref={sectionRef}>
                 <div className={`section-header animate-in ${isVisible ? 'animate-visible' : ''}`}>
-                    <h2 className="section-title">Work Experience</h2>
+                    <h2 className="section-title">Career Journey</h2>
                     <div className="title-underline"></div>
                     <p className="section-subtitle">
-                        My professional journey and career highlights
+                        An interactive timeline of my professional growth.
                     </p>
                 </div>
 
-                <div className="experience-timeline">
-                    {experiences.map((exp, index) => (
-                        <div
-                            key={exp.id}
-                            className={`experience-card animate-in ${isVisible ? 'animate-visible' : ''}`}
-                            style={{ transitionDelay: `${index * 0.15}s` }}
-                        >
-                            <div className="company-header">
-                                <div className="company-logo">
-                                    <span className="logo-placeholder">
-                                        {exp.company.charAt(0)}
-                                    </span>
-                                </div>
-                                <div className="company-info">
-                                    <h3 className="company-name">{exp.company}</h3>
-                                    {exp.totalDuration && (
-                                        <span className="total-duration">{exp.totalDuration}</span>
-                                    )}
-                                </div>
-                            </div>
+                <div className={`vt-timeline-container animate-in ${isVisible ? 'animate-visible' : ''}`}>
+                    <div className="vt-line">
+                        <motion.div
+                            className="vt-line-progress"
+                            initial={{ scaleY: 0 }}
+                            whileInView={{ scaleY: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: "circOut" }}
+                            style={{ originY: 0 }}
+                        />
+                    </div>
 
-                            <div className="positions-list">
-                                {exp.positions.map((position, idx) => (
-                                    <div key={idx} className="position-item">
-                                        <div className="position-header">
-                                            <h4 className="position-title">{position.title}</h4>
-                                            <span className="position-type">{position.type}</span>
-                                        </div>
-                                        <div className="position-meta">
-                                            <span className="position-period">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                                </svg>
-                                                {position.period} · {position.duration}
-                                            </span>
-                                            <span className="position-location">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                                    <circle cx="12" cy="10" r="3"></circle>
-                                                </svg>
-                                                {position.location}
-                                            </span>
-                                        </div>
-                                        {position.description && (
-                                            <p className="position-description">{position.description}</p>
-                                        )}
-                                        {position.skills && position.skills.length > 0 && (
-                                            <div className="position-skills">
-                                                {position.skills.slice(0, 5).map((skill, si) => (
-                                                    <span key={si} className="skill-tag">{skill}</span>
-                                                ))}
-                                                {position.skills.length > 5 && (
-                                                    <span className="skill-tag more-skills">+{position.skills.length - 5} more</span>
-                                                )}
-                                            </div>
+                    <div className="vt-nodes">
+                        {experiences.map((exp, index) => {
+                            const isActive = activeId === exp.id;
+                            const isLeft = index % 2 === 0;
+
+                            return (
+                                <div
+                                    key={exp.id}
+                                    className={`vt-node ${isActive ? 'active' : ''} ${isLeft ? 'node-left' : 'node-right'}`}
+                                >
+                                    <div className="vt-duration-opposite">
+                                        <span className="duration-text">{exp.duration}</span>
+                                    </div>
+
+                                    <div
+                                        className="vt-dot"
+                                        onClick={() => setActiveId(isActive ? null : exp.id)}
+                                    >
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="vt-active-glow"
+                                                className="vt-dot-glow"
+                                            />
                                         )}
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+
+                                    <div className="vt-content">
+                                        <div
+                                            className="vt-header"
+                                            onClick={() => setActiveId(isActive ? null : exp.id)}
+                                        >
+                                            <h4 className="vt-role">
+                                                <span className="vt-company">@{exp.company}</span>
+                                                {exp.role}
+                                            </h4>
+                                            <span className="vt-duration-mobile">{exp.duration}</span>
+                                        </div>
+
+                                        <AnimatePresence>
+                                            {isActive && (
+                                                <motion.div
+                                                    variants={storyContainerVariants}
+                                                    initial="hidden"
+                                                    animate="show"
+                                                    exit="exit"
+                                                    className="vt-story-wrapper"
+                                                >
+                                                    <div className="vt-story-board">
+                                                        <motion.div variants={storyItemVariants} className="story-context-header">
+                                                            <p className="story-summary">{exp.summary}</p>
+                                                        </motion.div>
+
+                                                        <div className="story-grid">
+                                                            <motion.div variants={storyItemVariants} className="story-section">
+                                                                <h4><span className="story-icon">🎯</span> Context / Problem</h4>
+                                                                <p>{exp.caseStudy.problem}</p>
+                                                            </motion.div>
+                                                            <motion.div variants={storyItemVariants} className="story-section">
+                                                                <h4><span className="story-icon">⚡</span> Approach & Role</h4>
+                                                                <p>{exp.caseStudy.approach}</p>
+                                                            </motion.div>
+                                                            <motion.div variants={storyItemVariants} className="story-section story-full">
+                                                                <h4><span className="story-icon">📈</span> Measurable Results</h4>
+                                                                <ul>
+                                                                    {exp.caseStudy.results.map((res, i) => (
+                                                                        <li key={i}>{res}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            </motion.div>
+                                                            <motion.div variants={storyItemVariants} className="story-section story-full">
+                                                                <h4><span className="story-icon">🛠️</span> Tools & Technologies</h4>
+                                                                <div className="story-tools">
+                                                                    {exp.caseStudy.tools.map((tool, i) => (
+                                                                        <span key={i} className="story-tool-tag">{tool}</span>
+                                                                    ))}
+                                                                </div>
+                                                            </motion.div>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </section>

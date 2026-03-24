@@ -1,9 +1,20 @@
+import { useState } from 'react';
 import { certifications } from '../data/certifications';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Certifications.css';
 
 const Certifications = () => {
     const [sectionRef, isVisible] = useScrollAnimation();
+    const [selectedCert, setSelectedCert] = useState(null);
+
+    const openModal = (cert, e) => {
+        e.preventDefault();
+        setSelectedCert(cert);
+    };
+
+    const closeModal = () => {
+        setSelectedCert(null);
+    };
 
     return (
         <section id="certifications" className="certifications">
@@ -18,15 +29,15 @@ const Certifications = () => {
 
                 <div className="cert-grid">
                     {certifications.map((cert, index) => (
-                        <a
+                        <div
                             key={cert.id}
-                            href={cert.file}
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className={`cert-card animate-in ${isVisible ? 'animate-visible' : ''}`}
-                            style={{ transitionDelay: `${index * 0.15}s` }}
+                            style={{ transitionDelay: `${index * 0.15}s`, cursor: 'pointer' }}
+                            onClick={(e) => openModal(cert, e)}
                         >
-                            <div className="cert-icon">{cert.icon}</div>
+                            <div className="cert-image-container">
+                                <img src={cert.file} alt={cert.title} className="cert-image" />
+                            </div>
                             <div className="cert-info">
                                 <h3 className="cert-title">{cert.title}</h3>
                                 <p className="cert-issuer">{cert.issuer}</p>
@@ -40,10 +51,20 @@ const Certifications = () => {
                                 </svg>
                                 <span>View Certificate</span>
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </div>
             </div>
+
+            {selectedCert && (
+                <div className="cert-modal" onClick={closeModal}>
+                    <div className="cert-modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="cert-modal-close" onClick={closeModal}>&times;</button>
+                        <img src={selectedCert.file} alt={selectedCert.title} className="cert-modal-image" />
+                        <h3 className="cert-modal-title">{selectedCert.title}</h3>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

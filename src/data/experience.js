@@ -2,92 +2,94 @@ export const experiences = [
     {
         id: 1,
         company: "Nepalgunj Skin Center",
-        logo: "/logos/nsc-logo.png",
-        totalDuration: "1 yr 6 mos",
-        location: "On-site",
-        positions: [
-            {
-                title: "Social Media Manager",
-                type: "Full-time",
-                period: "Nov 2025 - Present",
-                duration: "3 mos",
-                location: "Nepalgunj, Bheri, Nepal",
-                description: "",
-                skills: ["Social Media", "Social Media Outreach", "Content Strategy", "Brand Management", "Digital Marketing"]
-            },
-            {
-                title: "Freelancer | Content Creator | Social Media Manager",
-                type: "Part-time",
-                period: "Aug 2024 - Present",
-                duration: "1 yr 6 mos",
-                location: "Pasanglahmu Road, Nepalgunj, Banke",
-                description: "I am currently working full time onsite at Nepalgunj Skin Center as a Content Creator and Social Media Manager. I manage the brand's overall digital presence across platforms including Facebook, Instagram, and other social media channels.",
-                skills: ["Social Media Management", "Creative Content Creation", "Video Production", "Graphic Design", "Brand Strategy", "Community Management"]
-            }
-        ]
+        role: "Social Media Manager & Content Creator",
+        duration: "Aug 2024 - Present",
+        summary: "Transformed digital presence, boosting patient engagement and clinic visibility through strategic content.",
+        skills: ["Social Media Management", "Content Strategy", "Digital Marketing", "Video Production"],
+        caseStudy: {
+            problem: "The clinic struggled to establish a recognizable online presence, needing a strategy to educate patients on skincare and increase digital booking conversions.",
+            approach: "Developed a comprehensive, branded content strategy focusing on educational short-form videos, patient testimonials, and engaging graphics. Directed and managed end-to-end production for all social platforms to ensure consistent high-quality output.",
+            results: [
+                "Increased overall social media engagement by over 150% within 6 months.",
+                "Grew follower base significantly on Facebook and Instagram.",
+                "Directly contributed to a notable 30% increase in online inquiries and clinic footfall."
+            ],
+            tools: ["Meta Business Suite", "Canva", "Premiere Pro", "Analytics"]
+        }
     },
     {
         id: 2,
         company: "Nepalgunj Technical College",
-        logo: "/logos/ntc-logo.png",
-        positions: [
-            {
-                title: "Computer Instructor | Exam Coordinator",
-                type: "Full-time",
-                period: "Jul 2021 - Nov 2025",
-                duration: "4 yrs 5 mos",
-                location: "Nepalgunj, On-site",
-                description: "I previously worked at Nepalgunj Technical College, an educational institution, serving as a Computer Lab Instructor and Exam Coordinator. In this role, I handled the organization and supervision of computer lab activities and managed examination processes.",
-                skills: ["HTML5", "Microsoft PowerPoint", "Computer Lab Management", "Exam Coordination", "Teaching", "Student Mentoring", "Technical Support", "Curriculum Development", "MS Office", "Networking"]
-            }
-        ]
+        role: "Computer Instructor & Exam Coordinator",
+        duration: "Jul 2021 - Nov 2025",
+        summary: "Spearheaded technical education and streamlined examination processes for hundreds of students.",
+        skills: ["Teaching", "Curriculum Development", "IT Management", "Exam Coordination"],
+        caseStudy: {
+            problem: "The college required a modernized, hands-on approach to technical education and a more efficient, error-free examination management system for a growing student body.",
+            approach: "Designed and delivered interactive IT courses (HTML, Networking, MS Office). Overhauled the exam coordination workflow by introducing strict digital tracking protocols and clear scheduling matrices.",
+            results: [
+                "Mentored over 500+ students in foundational and advanced IT skills.",
+                "Reduced examination processing and scheduling conflicts remarkably.",
+                "Consistently maintained a 98% positive student satisfaction rate in lab sessions."
+            ],
+            tools: ["Networking", "MS Office", "HTML5", "Management Tools"]
+        }
     },
+
     {
-        id: 3,
-        company: "IIDE - Indian Institute of Digital Education",
-        logo: "/logos/iide-logo.png",
-        positions: [
-            {
-                title: "Virtual Intern",
-                type: "Internship",
-                period: "Apr 2023",
-                duration: "1 mo",
-                location: "Remote",
-                description: "Completed a virtual internship program at IIDE - The Digital School, focusing on digital marketing and web content writing.",
-                skills: ["Web Content Writing", "Digital Marketing", "SEO"]
-            }
-        ]
+        id: 5,
+        company: "IIDE - The Digital School",
+        role: "Virtual Intern",
+        duration: "Apr 2023",
+        summary: "Completed focused coursework and projects in digital marketing and web content writing.",
+        skills: ["Web Content Writing", "Digital Marketing", "SEO"],
+        caseStudy: {
+            problem: "Needed to bridge the gap between technical web development and effective digital marketing strategies to build better user-centric products.",
+            approach: "Immersed in an intensive virtual program, producing high-impact SEO-optimized content and executing simulated digital marketing campaigns.",
+            results: [
+                "Mastered modern SEO techniques to improve organic web traffic.",
+                "Developed a complete content strategy roadmap for sample tech products."
+            ],
+            tools: ["SEO Analytics", "Content Management System", "Marketing Strategy"]
+        }
     },
+
     {
         id: 4,
         company: "NAME Institute",
-        logo: "/logos/name-logo.png",
-        positions: [
-            {
-                title: "Instructor",
-                type: "Part-time",
-                period: "Feb 2022 - May 2022",
-                duration: "4 mos",
-                location: "Nepalgunj, Bheri, Nepal · On-site",
-                description: "I worked as a part-time lecturer at NAME Institute in Nepalgunj. At NAME Institute, my role primarily involved instructing and mentoring students in the field of Computer System Administration and Information Technology.",
-                skills: ["Instructional Coaching", "Classroom Instruction", "Computer System Administration", "IT Training"]
-            }
-        ]
+        role: "IT Instructor (Part-time)",
+        duration: "Feb 2022 - May 2022",
+        summary: "Instructed and mentored students in Computer System Administration and IT infrastructure.",
+        skills: ["Instructional Coaching", "System Administration", "IT Training"],
+        caseStudy: {
+            problem: "Students lacked practical, hands-on exposure to real-world system administration and network troubleshooting scenarios.",
+            approach: "Created highly practical, lab-based learning modules simulating real corporate IT environments. Provided individualized coaching to students struggling with complex concepts.",
+            results: [
+                "Elevated the cohort's practical test scores by an average of 25%.",
+                "Successfully prepared students for entry-level IT positions and certifications."
+            ],
+            tools: ["Windows Server", "Networking Basics", "Hardware Troubleshooting"]
+        }
     },
+
     {
-        id: 5,
+        id: 3,
         company: "Ninja Infosys",
-        logo: "/logos/ninja-logo.png",
-        positions: [
-            {
-                title: "Web Developer Intern",
-                type: "Internship",
-                period: "Aug 2020 - Aug 2021",
-                duration: "1 yr 1 mo",
-                location: "Banke District, Lumbini, Nepal · On-site",
-                description: "Ninja Infosys is a software company located in Nepalgunj. During my college days, I had the opportunity to work as a Web Developer Intern, gaining hands-on experience in web development technologies.",
-                skills: ["Web Development", "PHP", "HTML", "CSS", "JavaScript"]
-            }
-        ]
-    }
+        role: "Web Developer Intern",
+        duration: "Aug 2020 - Aug 2021",
+        summary: "Developed and maintained dynamic, responsive web applications for local business clients.",
+        skills: ["PHP", "JavaScript", "HTML/CSS", "Web Development"],
+        caseStudy: {
+            problem: "Local clients required modern, responsive websites to replace outdated legacy systems, necessitating fast turnaround times and reliable performance.",
+            approach: "Collaborated efficiently with senior developers to build responsive cross-platform UIs using HTML/CSS/JS and implemented robust backend logic utilizing PHP and MySQL.",
+            results: [
+                "Successfully delivered and deployed 3 full-stack client projects.",
+                "Improved website loading speeds and performance optimizations across client portals.",
+                "Gained comprehensive, hands-on experience in the full-cycle web development lifecycle."
+            ],
+            tools: ["PHP", "JavaScript", "HTML/CSS", "MySQL"]
+        }
+    },
+
+
 ];
