@@ -34,7 +34,7 @@ const storyItemVariants = {
 
 const Experience = () => {
     const [sectionRef, isVisible] = useScrollAnimation();
-    const [activeId, setActiveId] = useState(experiences[0].id);
+    const [activeId, setActiveId] = useState(null);
 
     return (
         <section id="experience" className="vertical-journey-section">
