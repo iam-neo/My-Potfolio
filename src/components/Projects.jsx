@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { projects } from '../data/projects';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import ProjectModal from './ProjectModal';
 import './Projects.css';
 
 const Projects = () => {
     const [filter, setFilter] = useState('all');
+    const [selectedProject, setSelectedProject] = useState(null);
     const [sectionRef, isVisible] = useScrollAnimation();
 
     const filteredProjects = filter === 'all'
@@ -45,7 +47,7 @@ const Projects = () => {
                             style={{ transitionDelay: `${0.1 + index * 0.1}s` }}
                         >
                             {project.image && (
-                                <div className="project-image-container">
+                                <div className="project-image-container" onClick={() => setSelectedProject(project)} style={{ cursor: 'pointer' }}>
                                     <img
                                         src={project.image}
                                         alt={project.title}
@@ -60,12 +62,12 @@ const Projects = () => {
                                 </div>
                             )}
                             <div className="project-content">
-                                <div className="project-header">
+                                <div className="project-header" onClick={() => setSelectedProject(project)} style={{ cursor: 'pointer' }}>
                                     <h3 className="project-title">{project.title}</h3>
                                     {project.featured && <span className="featured-badge">★ Featured</span>}
                                 </div>
 
-                                <p className="project-description">{project.description}</p>
+                                <p className="project-description" onClick={() => setSelectedProject(project)} style={{ cursor: 'pointer' }}>{project.description}</p>
 
                                 <div className="project-tech">
                                     {project.technologies.map((tech, i) => (
@@ -80,6 +82,17 @@ const Projects = () => {
                                 </div>
 
                                 <div className="project-footer">
+                                    <button
+                                        onClick={() => setSelectedProject(project)}
+                                        className="project-link details-link"
+                                    >
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <line x1="12" y1="16" x2="12" y2="12" />
+                                            <line x1="12" y1="8" x2="12.01" y2="8" />
+                                        </svg>
+                                        Details
+                                    </button>
                                     {project.github && (
                                         <a
                                             href={project.github}
@@ -114,6 +127,13 @@ const Projects = () => {
                     ))}
                 </div>
             </div>
+
+            {selectedProject && (
+                <ProjectModal
+                    project={selectedProject}
+                    onClose={() => setSelectedProject(null)}
+                />
+            )}
         </section>
     );
 };
