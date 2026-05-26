@@ -15,7 +15,7 @@ export const projects = [
     title: "Nepalgunj Skin Center",
     description: "Official website for Nepalgunj Skin Center — A responsive, SEO-optimized medical platform for dermatology, hair transplants, and aesthetic services.",
     technologies: ["HTML", "CSS", "PHP", "JavaScript"],
-    github: "https://github.com/iam-neo/Nepalgunj-Skin-Center",
+    github: null,
     liveDemo: "https://nepalgunjskincenter.com.np",
     image: "/projects/nsc.png",
     tags: ["clinic", "hospital", "dermatology", "responsive"],
