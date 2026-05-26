@@ -65,7 +65,7 @@
 .project-image-container {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 250px;
     overflow: hidden;
 }
 
@@ -94,7 +94,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1.5rem 2rem 2rem;
+    padding: 1.2rem 1.5rem 1.5rem;
 }
 
 .project-header {
@@ -102,11 +102,11 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .project-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
@@ -115,34 +115,39 @@
 .featured-badge {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 0.3rem 0.8rem;
+    padding: 0.25rem 0.6rem;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     white-space: nowrap;
 }
 
 .project-description {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.5;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Limit description to 3 lines max */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 0.4rem;
+    margin-bottom: 0.8rem;
 }
 
 .tech-tag {
     background: rgba(139, 92, 246, 0.2);
     color: var(--primary-color);
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
     font-weight: 500;
     border: 1px solid rgba(139, 92, 246, 0.3);
 }
@@ -150,35 +155,36 @@
 .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-tag {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .project-footer {
     margin-top: auto;
     display: flex;
-    gap: 0.8rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
 }
 
 .project-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.5rem;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    border-radius: 8px;
     color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
