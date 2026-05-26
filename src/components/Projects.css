@@ -130,6 +130,7 @@
     flex-grow: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     /* Limit description to 3 lines max */
     -webkit-box-orient: vertical;
     overflow: hidden;
