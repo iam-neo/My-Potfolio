@@ -44,23 +44,23 @@ export const projects = [
 
   {
     id: 3,
-    title: "BCEM College Website",
-    description: "Official frontend for the Bheri College of Engineering & Management (BCEM). A modern, responsive single-page application built with React and Vite, featuring dynamic routing and a clean interface.",
+    title: "ECEM College Website",
+    description: "A modern, premium showcase and interactive demo website for Everest College of Engineering and Management (ECEM), built as a blueprint for educational clients seeking high-performance websites for their colleges and schools.",
     technologies: ["React", "Vite", "JavaScript", "CSS"],
-    github: "https://github.com/iam-neo/BCEM",
-    liveDemo: "https://bcem.vercel.app",
-    image: "/projects/bcem.png",
+    github: null,
+    liveDemo: "https://ecoem.vercel.app",
+    image: "/projects/ecem.png",
     tags: ["college", "educational", "react", "SPA"],
     featured: true,
     caseStudy: {
-      challenge: "The college needed a modern, professional website to showcase programs, faculty, and campus life — replacing an outdated static site that didn't reflect the institution's growth.",
-      approach: "Built a single-page React application with Vite for blazing-fast builds. Implemented React Router for seamless navigation between departments, programs, and contact pages. Used CSS modules for maintainable styling.",
+      challenge: "School and college clients seeking custom websites needed a live, high-fidelity interactive demo to experience premium design, smooth transitions, and features tailored for educational institutions.",
+      approach: "Designed and developed a highly responsive single-page React application using Vite. Modeled essential educational modules such as dynamic department routing, curriculum showcases, and interactive galleries using reusable CSS modules.",
       results: [
-        "Sub-2-second load time on Vercel's edge network",
-        "Clean SPA navigation with zero page reloads",
-        "Easily extensible component architecture for future updates"
+        "Served as a powerful sales and demonstration tool to convert prospective educational clients",
+        "Sub-2-second page loads on Vercel's edge network proving high development standards",
+        "Highly modular component library ready for rapid styling and deployment for new schools"
       ],
-      learnings: ["React Router for SPA navigation", "Component-driven architecture", "Vercel deployment workflows"]
+      learnings: ["Client demonstration strategies", "Modular component-driven architectures", "Performance tuning for Single-Page Applications"]
     }
   },
   {
