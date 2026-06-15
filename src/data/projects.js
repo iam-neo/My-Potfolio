@@ -1,5 +1,26 @@
 export const projects = [
   {
+    id: 7,
+    title: "Resume Maker",
+    description: "A state-of-the-art, fully interactive web application to design and build professional, ATS-optimized resumes in minutes. Features in-browser editing with 100% data privacy and local auto-save.",
+    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+    github: "https://github.com/iam-neo/Resume-Maker",
+    liveDemo: "https://resume.magarnirmal.com.np/",
+    image: "/projects/resume.png",
+    tags: ["resume-builder", "nextjs", "ats-optimized", "privacy-first"],
+    featured: true,
+    caseStudy: {
+      challenge: "Job seekers needed a fast, private way to create ATS-friendly resumes without uploading sensitive personal data to third-party servers or paying for subscription-based resume builders.",
+      approach: "Built a fully client-side resume editor using Next.js 16 App Router and React 19. All data stays in the browser with local auto-save via localStorage. Designed multiple professional templates with Tailwind CSS v4 and implemented real-time PDF export.",
+      results: [
+        "100% client-side — zero data leaves the browser",
+        "Multiple ATS-optimized professional templates",
+        "Instant local auto-save prevents data loss"
+      ],
+      learnings: ["Next.js 16 App Router patterns", "Client-side PDF generation", "ATS resume formatting standards"]
+    }
+  },
+  {
     id: 1,
     title: "Dynamic Fonepay QR Generator",
     description: "Beautiful Vite + React application for generating dynamic Fonepay QR codes on the fly. Features zero-dependency CRC16-CCITT calculations and a dark-mode Tailwind UI.",
